@@ -13,11 +13,12 @@ and ff.experiment_id = 'pulse-visiblity'
 and variation_id = 'ENABLED'
 inner join clean.user u
 on g.host_id = u.user_id
-where date(g.created_at) between '2025-09-01' and '2025-09-07'
+where date(g.created_at) between '2025-09-01' and '2025-09-08'
 and g.host_country = 'US'
 and g.host_occupation = 'teacher'
 and g.is_classroom_game
-and g.game_type IN ('tp','pres_tp')
+and g.game_type IN ('tp')
+and g.quiz_type = 'quiz'
 and u.email not like '%quizizz.com'
 and u.email not like '%wayground.com'
 )
