@@ -8,7 +8,7 @@ where date(experiment_date) >= '2025-09-09'
 and date(experiment_date) < current_date()
 --and date(g.created_at) = date(experiment_date)
 and ff.experiment_id = 'session-setup-experiment'
-and variation_id = 'DISABLED'
+--and variation_id = 'DISABLED'
 and u.email not like '%quizizz.com'
 and u.email not like '%wayground.com'
 and u.country = 'US'
