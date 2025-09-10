@@ -41,8 +41,7 @@ COUNT(DISTINCT CASE WHEN is_ai_answer_explanation IS TRUE AND is_classroom_game 
 COUNT(DISTINCT CASE WHEN attempts_permitted <> 0 AND is_classroom_game THEN game_id END ) AS attempts_changed,
 COUNT(DISTINCT CASE WHEN is_leaderboard_shown IS TRUE AND is_classroom_game THEN game_id END ) AS is_leaderboard_shown,
 COUNT(DISTINCT CASE WHEN skip_question IS TRUE AND is_classroom_game THEN game_id END ) AS is_skip_ques_enabled,
-COUNT(DISTINCT CASE WHEN game_type_group = 'Homework' and COALESCE(mastery_mode_goal,mystic_peak_goal) IS NOT NULL AND is_classroom_game THEN game_id
-WHEN game_type_group = 'Live' and COALESCE(mastery_mode_goal,mystic_peak_goal) IS NOT NULL AND is_classroom_game THEN game_id END ) AS is_mastery_mode ,
+COUNT(DISTINCT CASE COALESCE(mastery_mode_goal,mystic_peak_goal) IS NOT NULL AND is_classroom_game THEN game_id END ) AS is_mastery_mode ,
 COUNT(DISTINCT CASE WHEN is_duel_enabled IS TRUE AND is_classroom_game THEN game_id END ) AS is_strike_and_shield,
 COUNT(DISTINCT CASE WHEN timer != 'off' AND is_classroom_game THEN game_id END ) AS is_timer_on,
 COUNT(DISTINCT CASE WHEN is_redemption IS TRUE AND is_classroom_game THEN game_id END ) AS is_redemption_qus_enabled,
