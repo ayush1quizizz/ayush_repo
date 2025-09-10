@@ -1,5 +1,5 @@
 --async live dashboard funnel :
-with top_base as (
+with base as (
 select distinct ff.user_id,date(ff.experiment_date) as dt
 from transformed.user_feature_flag_map_most_frequent_in_a_day ff
 inner join clean.user u
@@ -13,27 +13,27 @@ and u.email not like '%wayground.com'
 and u.country = 'US'
 and u.occupation = 'teacher'
 )
-,below_base as (
-select distinct ff.user_id,date(ff.experiment_date) as dt
-from transformed.user_feature_flag_map_most_frequent_in_a_day ff
-inner join clean.user u
-on ff.user_id = u.user_id
-where date(experiment_date) between '2025-08-22' and '2025-08-29'
---and date(g.created_at) = date(experiment_date)
-and ff.experiment_id = 'async-live-dash-redirect'
-and variation_id = 'ENABLED'
-and u.email not like '%quizizz.com'
-and u.email not like '%wayground.com'
-and u.country = 'US'
-and u.occupation = 'teacher'
-)
-,base as (
-select distinct a.*
-from top_base a
-inner join below_base b
-on a.user_id = b.user_id
-and a.dt = b.dt
-)
+-- ,below_base as (
+-- select distinct ff.user_id,date(ff.experiment_date) as dt
+-- from transformed.user_feature_flag_map_most_frequent_in_a_day ff
+-- inner join clean.user u
+-- on ff.user_id = u.user_id
+-- where date(experiment_date) between '2025-08-22' and '2025-08-29'
+-- --and date(g.created_at) = date(experiment_date)
+-- and ff.experiment_id = 'async-live-dash-redirect'
+-- and variation_id = 'ENABLED'
+-- and u.email not like '%quizizz.com'
+-- and u.email not like '%wayground.com'
+-- and u.country = 'US'
+-- and u.occupation = 'teacher'
+-- )
+-- ,base as (
+-- select distinct a.*
+-- from top_base a
+-- inner join below_base b
+-- on a.user_id = b.user_id
+-- and a.dt = b.dt
+-- )
 ,adp_base as (
 select distinct
 qp.user_id,
