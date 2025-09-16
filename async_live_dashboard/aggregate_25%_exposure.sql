@@ -103,8 +103,8 @@ count(distinct case when g.is_classroom_game then pp.game_id end) as project_pro
 count(distinct case when g.is_classroom_game then ac.game_id end) as sort_accuracy_clicked_games,
 count(distinct case when tb.total_time_in_min >= 5 and g.is_classroom_game then tb.game_id end) as time_spent_more_than_5_min,
 count(distinct case when tb.total_time_in_min >= 2 and g.is_classroom_game then tb.game_id end) as time_spent_more_than_2_min,
-count(distinct case when tb.total_time_in_min >= 5 and g.is_classroom_game then tb.game_id end) as hosts_time_spent_more_than_5_min,
-count(distinct case when tb.total_time_in_min >= 2 and g.is_classroom_game then tb.game_id end) as hosts_time_spent_more_than_2_min
+count(distinct case when tb.total_time_in_min >= 5 and g.is_classroom_game then g.host_id end) as hosts_time_spent_more_than_5_min,
+count(distinct case when tb.total_time_in_min >= 2 and g.is_classroom_game then g.host_id end) as hosts_time_spent_more_than_2_min
 from base a
 -- left join adp_base qp
 -- on a.user_id = qp.user_id

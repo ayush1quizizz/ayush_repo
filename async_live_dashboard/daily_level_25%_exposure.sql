@@ -1,6 +1,7 @@
 --async live dashboard funnel :
 with base as (
-select distinct ff.user_id,date(ff.experiment_date) as dt,variation_id
+select distinct ff.user_id,date(ff.experiment_date) as dt,
+        case when variation_id in ('DISABLED','PACING_MODAL')variation_id
 from transformed.user_feature_flag_map_most_frequent_in_a_day ff
 inner join clean.user u
 on ff.user_id = u.user_id
@@ -8,7 +9,7 @@ where date(experiment_date) >= '2025-09-09'
 and date(experiment_date) < current_date()
 --and date(g.created_at) = date(experiment_date)
 and ff.experiment_id = 'session-setup-experiment'
-and variation_id = 'DISABLED'
+--and variation_id = 'DISABLED'
 and u.email not like '%quizizz.com'
 and u.email not like '%wayground.com'
 and u.country = 'US'

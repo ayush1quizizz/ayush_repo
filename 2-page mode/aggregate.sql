@@ -28,7 +28,7 @@ count(distinct case when is_classroom_game AND is_assigned = true then game_id e
 count(distinct case when is_classroom_game AND game_type = 'flashcard_async' then game_id end) as `flashcard_async`,
 count(distinct case when is_classroom_game AND game_type = 'test' then game_id end) as `test`,
 count(distinct case when is_classroom_game AND game_type = 'tp' then game_id end) as `tp`,
-count(distinct case when is_classroom_game AND game_type = 'mystic_peak' then game_id end) as `mystic_peak`,
+count(distinct case when is_classroom_game AND game_type in( 'mystic_peak','mastery_peak') then game_id end) as `mystic_peak`,
 count(distinct case when is_classroom_game AND game_type = 'team' then game_id end) as `team`,
 count(distinct case when is_classroom_game AND game_type = 'async' then game_id end) as `async`,
 count(distinct case when is_classroom_game AND game_type = 'live' then game_id end) as `live`,
