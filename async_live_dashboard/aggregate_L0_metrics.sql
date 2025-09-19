@@ -2,7 +2,7 @@ WITH base as (
 select distinct 
        ff.user_id,
        date(ff.experiment_date) as dt,
-       variation_id
+       CASE WHEN variation_id in ('DISABLED','PACING_MODAL') THEN 'CONTROL' ELSE variation_id END as variation_id
 from transformed.user_feature_flag_map_most_frequent_in_a_day ff
 inner join clean.user u
 on ff.user_id = u.user_id

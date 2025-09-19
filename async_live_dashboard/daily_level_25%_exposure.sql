@@ -1,7 +1,7 @@
 --async live dashboard funnel :
 with base as (
 select distinct ff.user_id,date(ff.experiment_date) as dt,
-        case when variation_id in ('DISABLED','PACING_MODAL')variation_id
+        case when variation_id in ('DISABLED','PACING_MODAL') then 'CONTROL' else variation_id end as variation_id
 from transformed.user_feature_flag_map_most_frequent_in_a_day ff
 inner join clean.user u
 on ff.user_id = u.user_id
